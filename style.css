@@ -1,0 +1,70 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 24px;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+.start-btn {
+  display: inline-block;
+  padding: 14px 28px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  background: #16a085;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.start-btn:hover {
+  background: #12836b;
+}
+
+.stage {
+  margin-top: 24px;
+  /* Hide the flags while they sit off-screen before/after sliding */
+  overflow: hidden;
+}
+
+.flag {
+  width: 380px;
+  margin-bottom: 40px;
+  border: 1px solid #333;
+  /* Start invisible & off-screen; JS + .is-active drives the entrance */
+  opacity: 0;
+}
+
+.flag svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Off-screen start positions */
+.flag--top {
+  transform: translateX(-120vw);
+}
+
+.flag--bottom {
+  transform: translateX(120vw);
+}
+
+/* Bottom flag: hidden until Start, then slides in FROM THE MIDDLE of the page */
+.flag--bottom {
+  opacity: 0;
+  /* 50vw = center of viewport, -50% = pull back by half the flag's own width */
+  transform: translateX(calc(50vw - 50%));
+}
+
+/* When active, glide to the resting position */
+.flag.is-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: transform 1.2s ease-out, opacity 0.4s ease-out;
+}
